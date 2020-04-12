@@ -20,14 +20,15 @@ public class Solution {
         for (int i = 0; i < len; i++) {
             for (int j = len - 1; j > i; j--) {
                 flag = true;
-                for (int k = 0; k < (j - i); k++) {
+                for (int k = 0; k <= (j - i)/2; k++) {
                     if (s.charAt(i + k) != s.charAt(j - k)) {
                         flag = false;
                         break;
                     }
                 }
                 if (flag) {
-                    if ((j - i) > substring.length()) substring = s.substring(i, j + 1);
+                    if (((j+1) - i) > substring.length()) substring = s.substring(i, j + 1);
+                    if(substring.length() == len) return substring;
                 }
             }
         }
