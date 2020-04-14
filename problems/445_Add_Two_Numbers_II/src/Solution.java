@@ -1,29 +1,9 @@
-public class Solution2 {
+public class Solution {
 
-    public static void main(String[] args) {
-        ListNode l1 = new ListNode(2);
-        l1.next = new ListNode(4);
-        l1.next.next = new ListNode(3);
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
 
-
-        ListNode l2 = new ListNode(5);
-        l2.next = new ListNode(6);
-        l2.next.next = new ListNode(4);
-
-
-//        ListNode l1 = new ListNode(9);
-//        l1.next = new ListNode(8);
-//        ListNode l2 = new ListNode(1);
-
-        ListNode ret = addTwoNumbers(l1, l2);
-
-        do {
-            System.out.println(ret.val);
-            ret = ret.next;
-        } while (ret != null);
-    }
-
-    public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        l1 = reverseList(l1);
+        l2 = reverseList(l2);
 
         int carry = 0;
         int val1 = 0;
@@ -67,9 +47,19 @@ public class Solution2 {
         }
         if (carry == 1) node.next = new ListNode(1);
 
-        return ret;
+        return reverseList(ret);
     }
 
 
-
+    private ListNode reverseList(ListNode l){
+        ListNode ret = new ListNode(l.val);
+        l = l.next;
+        while(l != null){
+            ListNode tmp = new ListNode(l.val);
+            tmp.next = ret;
+            ret = tmp;
+            l = l.next;
+        }
+        return ret;
+    }
 }
